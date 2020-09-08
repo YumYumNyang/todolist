@@ -1,9 +1,9 @@
 import React from 'react';
 
-function AddList({ todo, onChange, onCreate }) {
+function AddList({ text, done, onChange, onCreate }) {
   return (
     <div>
-      <input name="text" placeholder="할일입력" onChange={onChange} value={todo.text} />
+      <input name="text" onChange={onChange} value={text} />
       <button onClick={onCreate}>추가</button>
     </div>
   );

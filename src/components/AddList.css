@@ -1,0 +1,13 @@
+.input {
+  width: 50%;
+  height: 30px;
+  border: none;
+  margin: 10px;
+  box-shadow: 5px 5px 5px gray;
+  background-color: rgb(223, 223, 223);
+}
+.input:hover {
+  width: 55%;
+  height: 35px;
+  background-color: rgb(204, 220, 255);
+}

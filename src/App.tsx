@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import './App.css'
+import './App.css';
 import AddList from './components/AddList';
 import TodoLists from './components/TodoLists';
-import styled, {createGlobalStyle} from "styled-components"
+import styled, { createGlobalStyle } from 'styled-components';
 import moment, { Moment } from 'moment';
 
 const GlobalStyle = createGlobalStyle`
@@ -30,7 +30,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   text-align: center;
   background-color: white;
-`
+`;
 
 const Title = styled.section`
   width: 40vw;
@@ -41,7 +41,7 @@ const Title = styled.section`
   font-weight: bold;
   font-style: italic;
   text-shadow: 5px 5px 2px gray;
-`
+`;
 
 const Listwapper = styled.section`
   width: 40vw;
@@ -51,50 +51,53 @@ const Listwapper = styled.section`
   & > ul {
     padding: 0;
   }
-  `
+`;
 const TodoAdd = styled.section`
   width: 40vw;
   height: 12vh;
-`
-
+`;
 
 function App() {
   const [input, setInput] = useState({ text: '' });
   const { text } = input;
-  
-  const [dateInput, setDateInput] = useState({ start:null,end:null})
-  const { start , end } = dateInput;
+
+  const [dateInput, setDateInput] = useState({ start: null, end: null });
+  const { start, end } = dateInput;
 
   const [list, setList] = useState([]);
 
-  const onChange = (value:string) => {
-    setInput({ ...input, text:value });
+  const onChange = (value: string) => {
+    setInput({ ...input, text: value });
   };
 
   const onChangeDate = (startedAt, endedAt) => {
-    setDateInput({start: startedAt, end: endedAt})
-  }
+    setDateInput({ start: startedAt, end: endedAt });
+  };
 
-  const onCreate = (index:number) => {
+  const onCreate = (index: number) => {
     const todo = {
       id: index,
       text,
-      start: moment(start).format('YYYY-MM-DD').toString(),
-      end: moment(end).format('YYYY-MM-DD').toString(),
+      start: moment(start)
+        .format('YYYY-MM-DD')
+        .toString(),
+      end: moment(end)
+        .format('YYYY-MM-DD')
+        .toString(),
     };
     setList(list.concat(todo));
     setInput({ text: '' });
-    setDateInput({ start: null , end: null});
+    setDateInput({ start: null, end: null });
   };
 
-  const onRemove = (index) =>{
+  const onRemove = index => {
     const newTodoList = list.filter((_, i2) => i2 !== index);
     setList(newTodoList);
   };
 
   console.log(moment(start).format('YYYY-MM-DD'));
-  
-  const onEdit = (index,text,start,end) => {
+
+  const onEdit = (index, text, start, end) => {
     const newList = [...list];
     newList[index].text = text;
     newList[index].start = start;
@@ -102,25 +105,26 @@ function App() {
     setList(newList);
   };
 
-
-
-
   return (
     <React.Fragment>
-      <GlobalStyle/>
-        <Wrapper>
-          <Title>
-            TO DO LIST
-          </Title>
-          <Listwapper>
-          <TodoLists list={list}  onRemove={onRemove} onEdit={onEdit} />
-          </Listwapper>
-          <TodoAdd>
-            <AddList text={text} start={start} end={end} onChange={onChange} onChangeDate={onChangeDate}onCreate={onCreate} />
-          </TodoAdd> 
-        </Wrapper>
-      </React.Fragment>
-
+      <GlobalStyle />
+      <Wrapper>
+        <Title>TO DO LIST</Title>
+        <Listwapper>
+          <TodoLists list={list} onRemove={onRemove} onEdit={onEdit} />
+        </Listwapper>
+        <TodoAdd>
+          <AddList
+            text={text}
+            start={start}
+            end={end}
+            onChange={onChange}
+            onChangeDate={onChangeDate}
+            onCreate={onCreate}
+          />
+        </TodoAdd>
+      </Wrapper>
+    </React.Fragment>
   );
 }
 

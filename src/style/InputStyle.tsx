@@ -1,8 +1,7 @@
-import { on } from "process";
+import { on } from 'process';
 
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
-
 
 const Input = styled.input`
   width: 50%;
@@ -16,10 +15,10 @@ const Input = styled.input`
     height: 6vh;
     background-color: rgb(204, 220, 255);
   }
-`
+`;
 
-function InputStyle({ ...rest}){
-    return <Input {...rest}></Input>}
-
+function InputStyle({ ...rest }) {
+  return <Input {...rest}></Input>;
+}
 
 export default InputStyle;
